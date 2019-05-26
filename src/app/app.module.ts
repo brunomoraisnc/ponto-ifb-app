@@ -3,10 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
-import { RecuperarSenhaPage } from '../pages/recuperar-senha/recuperar-senha';
 import { TelaPrincipalPage } from '../pages/tela-principal/tela-principal';
-import { PagePage } from '../pages/page/page';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -15,9 +13,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   declarations: [
     MyApp,
     LoginPage,
-    RecuperarSenhaPage,
-    TelaPrincipalPage,
-    PagePage
+    TelaPrincipalPage
   ],
   imports: [
     BrowserModule,
@@ -27,14 +23,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   entryComponents: [
     MyApp,
     LoginPage,
-    RecuperarSenhaPage,
-    TelaPrincipalPage,
-    PagePage,
+    TelaPrincipalPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
