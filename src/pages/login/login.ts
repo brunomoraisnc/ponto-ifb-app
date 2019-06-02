@@ -8,10 +8,17 @@ import { TelaPrincipalPage } from '../tela-principal/tela-principal';
 })
 export class LoginPage {
 
+  cpf = "";
+
   constructor(public navCtrl: NavController) {
   }
   goToTelaPrincipal(params){
-    if (!params) params = {};
-    this.navCtrl.push(TelaPrincipalPage);
+    console.log(this.cpf);
+
+
+    // console.log(cpf);
+
+    if (!params) params = {}
+    this.navCtrl.push(TelaPrincipalPage, {cpf: this.cpf});
   }
 }

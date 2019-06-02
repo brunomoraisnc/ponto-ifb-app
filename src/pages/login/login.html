@@ -14,12 +14,12 @@
       <ion-label>
         CPF
       </ion-label>
-      <ion-input type="number" placeholder="Insira seu nº de CPF" name="cpf"></ion-input>
+      <ion-input type="number" placeholder="Insira seu nº de CPF" name="cpf" [(ngModel)]="cpf"></ion-input>
     </ion-item>
+    <div class="spacer" style="width:300px;height:16px;" id="login-spacer7"></div>
+    <button id="login-button1" ion-button color="dark" full icon-right style="font-size:16px;border-radius:0px 0px 0px 0px;" on-click="goToTelaPrincipal()">
+      Fazer login
+      <ion-icon name="arrow-forward"></ion-icon>
+    </button>
   </form>
-  <div class="spacer" style="width:300px;height:16px;" id="login-spacer7"></div>
-  <button id="login-button1" ion-button color="dark" full icon-right style="font-size:16px;border-radius:0px 0px 0px 0px;" on-click="goToTelaPrincipal()">
-    Fazer login
-    <ion-icon name="arrow-forward"></ion-icon>
-  </button>
 </ion-content>
