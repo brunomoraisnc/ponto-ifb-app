@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "5.2.11",
     "@ionic-native/core": "~4.20.0",
     "@ionic-native/geolocation": "^4.20.0",
+    "@ionic-native/http": "^4.20.0",
     "@ionic-native/splash-screen": "~4.20.0",
     "@ionic-native/status-bar": "~4.20.0",
     "@ionic/pro": "2.0.4",
@@ -42,7 +43,8 @@
     "plugins": {
       "cordova-plugin-geolocation": {
         "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
-      }
+      },
+      "cordova-plugin-advanced-http": {}
     }
   }
 }
