@@ -2,9 +2,6 @@ import { Component } from '@angular/core';
 import { HTTP } from '@ionic-native/http';
 import { NavController, NavParams } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
-// import { HTTP } from '@ionic-native/http';
-// import { HTTP } from '@ionic-native/http/ngx'
-
 
 @Component({
   selector: 'page-tela-principal',
@@ -24,11 +21,16 @@ export class TelaPrincipalPage {
       this.lat = pos.coords.latitude;
       this.lng = pos.coords.longitude;
       this.cpf = this.navParams.get('cpf');
+    }).catch(err => console.log('Error getting location', err));
 
-      
-    // resp.coords.latitude
-      // resp.coords.longitude
-     }).catch(err => console.log('Error getting location', err));
+    // this.http.get('https://jsonplaceholder.typicode.com/todos/1', {}, {})
+    //   .then(data => {
+    //     console.log('teste')
+    //     // console.log(data.status);
+    //     // console.log(data.data); // data received by server
+    //     // console.log(data.headers);
+    
+    //   }).catch(error1 => console.log(error1));
   }
   sendLoc(){
     this.http.post('https://api-rest-ppi.herokuapp.com/api-item/',

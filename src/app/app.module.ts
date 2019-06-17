@@ -20,7 +20,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
-//    HTTP,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
