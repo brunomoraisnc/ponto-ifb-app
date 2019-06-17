@@ -12,6 +12,7 @@ export class TelaPrincipalPage {
   lat : any;
   lng : any;
   cpf: "";
+  coords : any;
 
   constructor(public navCtrl: NavController, public geo: Geolocation, public navParams: NavParams, private http: HTTP) {
   }
@@ -21,6 +22,7 @@ export class TelaPrincipalPage {
       this.lat = pos.coords.latitude;
       this.lng = pos.coords.longitude;
       this.cpf = this.navParams.get('cpf');
+      this.sendLoc();
     }).catch(err => console.log('Error getting location', err));
 
     // this.http.get('https://jsonplaceholder.typicode.com/todos/1', {}, {})
@@ -33,8 +35,9 @@ export class TelaPrincipalPage {
     //   }).catch(error1 => console.log(error1));
   }
   sendLoc(){
+    this.coords = this.lat + " " + this.lng;
     this.http.post('https://api-rest-ppi.herokuapp.com/api-item/',
-    { "cpf": "04719935141", "mac":"11", "coords": "123456", "presenca":"1" }, { }).then(function(response) {
+    { "cpf": this.cpf, "mac":"11", "coords": this.coords, "presenca":"1" }, { }).then(function(response) {
       // prints 200
       console.log(response.status);
       try {
