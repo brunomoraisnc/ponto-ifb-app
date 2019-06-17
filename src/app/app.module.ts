@@ -1,10 +1,10 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HTTP } from '@ionic-native/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 // import { AlertController } from '@ionic/angular';
 // import { HTTP } from '@ionic-native/http';
-
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { TelaPrincipalPage } from '../pages/tela-principal/tela-principal';
@@ -20,7 +20,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
-    // HTTP,
+//    HTTP,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -33,6 +33,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     StatusBar,
     SplashScreen,
     Geolocation,
+    HTTP,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

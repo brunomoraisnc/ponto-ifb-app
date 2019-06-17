@@ -1,7 +1,8 @@
 {
   "name": "meuapp",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "ionic-angular",
   "id": "5a598f98"
