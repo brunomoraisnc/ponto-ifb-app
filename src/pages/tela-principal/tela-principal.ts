@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+/* import {
+  BackgroundGeolocation,
+  BackgroundGeolocationConfig,
+  BackgroundGeolocationResponse
+} from '@ionic-native/background-geolocation'; */
 import { HTTP } from '@ionic-native/http';
 import { NavController, NavParams } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
@@ -14,14 +19,48 @@ export class TelaPrincipalPage {
   cpf: "";
   coords : any;
 
-  constructor(public navCtrl: NavController, public geo: Geolocation, public navParams: NavParams, private http: HTTP) {
-  }
+  constructor(
+    public navCtrl: NavController,
+    // private backgroundGeolocation: BackgroundGeolocation,
+    public geo: Geolocation,
+    public navParams: NavParams,
+    private http: HTTP
+    ) {}
+    
+    /* startBackgroundLoc(){
+      const config: BackgroundGeolocationConfig = {
+        desiredAccuracy: 10,
+        stationaryRadius: 20,
+        distanceFilter: 30,
+        debug: true, //  enable this hear sounds for background-geolocation life-cycle.
+        stopOnTerminate: false, // enable this to clear background location settings when the app terminates
+      };
+
+      this.backgroundGeolocation.configure(config).then(() => {
+        this.backgroundGeolocation
+          .on(BackgroundGeolocationEvents.location)
+          .subscribe((location: BackgroundGeolocationResponse) => {
+            console.log(location);
+            // this.sendGPS(location);
   
+            // IMPORTANT:  You must execute the finish method here to inform the native plugin that you're finished,
+            // and the background-task may be completed.  You must do this regardless if your operations are successful or not.
+            // IF YOU DON'T, ios will CRASH YOUR APP for spending too much time in the background.
+          });
+      });
+
+      // start recording location
+      this.backgroundGeolocation.start();
+  
+    } */
+
   getLoc(){
+
     this.geo.getCurrentPosition().then( pos => {
       this.lat = pos.coords.latitude;
       this.lng = pos.coords.longitude;
       this.cpf = this.navParams.get('cpf');
+
       this.sendLoc();
     }).catch(err => console.log('Error getting location', err));
 
