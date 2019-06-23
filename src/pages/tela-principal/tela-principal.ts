@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
-/* import {
+import {
+  // BackgroundGeolocationOriginal,
   BackgroundGeolocation,
   BackgroundGeolocationConfig,
-  BackgroundGeolocationResponse
-} from '@ionic-native/background-geolocation'; */
+  BackgroundGeolocationResponse,
+  // BackgroundGeolocationEvents
+} from '@ionic-native/background-geolocation';
 import { HTTP } from '@ionic-native/http';
 import { NavController, NavParams } from 'ionic-angular';
-import { Geolocation } from '@ionic-native/geolocation';
+// import { Geolocation } from '@ionic-native/geolocation';
 
 @Component({
   selector: 'page-tela-principal',
@@ -18,16 +20,18 @@ export class TelaPrincipalPage {
   lng : any;
   cpf: "";
   coords : any;
+  location: any;
 
   constructor(
     public navCtrl: NavController,
     // private backgroundGeolocation: BackgroundGeolocation,
-    public geo: Geolocation,
+    private backgroundGeolocation: BackgroundGeolocation,
+    // public geo: Geolocation,
     public navParams: NavParams,
     private http: HTTP
     ) {}
     
-    /* startBackgroundLoc(){
+    startBackgroundLoc(){
       const config: BackgroundGeolocationConfig = {
         desiredAccuracy: 10,
         stationaryRadius: 20,
@@ -36,42 +40,39 @@ export class TelaPrincipalPage {
         stopOnTerminate: false, // enable this to clear background location settings when the app terminates
       };
 
-      this.backgroundGeolocation.configure(config).then(() => {
-        this.backgroundGeolocation
-          .on(BackgroundGeolocationEvents.location)
-          .subscribe((location: BackgroundGeolocationResponse) => {
-            console.log(location);
-            // this.sendGPS(location);
-  
-            // IMPORTANT:  You must execute the finish method here to inform the native plugin that you're finished,
-            // and the background-task may be completed.  You must do this regardless if your operations are successful or not.
-            // IF YOU DON'T, ios will CRASH YOUR APP for spending too much time in the background.
-          });
-      });
+      this.backgroundGeolocation.configure(config)
+      .then(() => {
 
+        this.backgroundGeolocation.on(this.location).subscribe((location: BackgroundGeolocationResponse) => {
+          console.log(location);
+          this.location = location;
+          this.lat = location.latitude;
+          this.lng = location.longitude;
+          // IMPORTANT:  You must execute the finish method here to inform the native plugin that you're finished,
+          // and the background-task may be completed.  You must do this regardless if your operations are successful or not.
+          // IF YOU DON'T, ios will CRASH YOUR APP for spending too much time in the background.
+          // this.backgroundGeolocation.finish(); // FOR IOS ONLY
+        });
+
+      }).catch((err) => {
+        console.log('erro: ' + err);
+      }
+      );
+      
       // start recording location
       this.backgroundGeolocation.start();
   
-    } */
+    }
 
   getLoc(){
 
-    this.geo.getCurrentPosition().then( pos => {
+    /* this.geo.getCurrentPosition().then( pos => {
       this.lat = pos.coords.latitude;
       this.lng = pos.coords.longitude;
       this.cpf = this.navParams.get('cpf');
 
       this.sendLoc();
-    }).catch(err => console.log('Error getting location', err));
-
-    // this.http.get('https://jsonplaceholder.typicode.com/todos/1', {}, {})
-    //   .then(data => {
-    //     console.log('teste')
-    //     // console.log(data.status);
-    //     // console.log(data.data); // data received by server
-    //     // console.log(data.headers);
-    
-    //   }).catch(error1 => console.log(error1));
+    }).catch(err => console.log('Error getting location', err)); */
   }
   sendLoc(){
     this.coords = this.lat + " " + this.lng;
