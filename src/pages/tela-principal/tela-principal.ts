@@ -23,15 +23,6 @@ export class TelaPrincipalPage {
   location: any;
   response: string;
 
-  // lat1: -15.754114;
-  // lon1: -47.879623;
-
-  // ponto central
-  // lat2: -15.753827;
-  // lon2: -47.878808;
-
-  // unit = "K"
-
   constructor(
     public navCtrl: NavController,
     // private backgroundGeolocation: BackgroundGeolocation,
@@ -80,12 +71,13 @@ export class TelaPrincipalPage {
       let unit = "K";
 
       // calcula distancia
+      this.response = 'Calculando distância';
       let dist = this.distance(this.lat, this.lng, event_lat, event_lng, unit);
 
       // Verifica presenca
       if (dist > 0.09287030236638635) {
         this.sendLoc(0);
-        this.response = 'Presença não identificada.<br>Volte para a área do evento!';
+        this.response = 'Presença não identificada. Volte para a área do evento!';
       } else {
         this.sendLoc(1);
         this.response = 'Presença registrada!';
@@ -121,23 +113,6 @@ export class TelaPrincipalPage {
       console.log(response.error);
     });
   }
-    // this.http.get('https://jsonplaceholder.typicode.com/todos/1', {}, {})
-    //   .then(data => {
-    //     console.log('teste')
-    //     // console.log(data.status);
-    //     // console.log(data.data); // data received by server
-    //     // console.log(data.headers);
-
-    //   }).catch(err1 => console.log('Error getting location', err1));
-  // }
-  // getLoc(){
-  //   this.geolocation.getCurrentPosition().then((resp) => {
-  //     // resp.coords.latitude
-  //     // resp.coords.longitude
-  //    }).catch((error) => {
-  //      console.log('Error getting location', error);
-  //    });
-  // }
   
   distance(lat1, lon1, lat2, lon2, unit) {
     /*
