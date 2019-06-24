@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 import { TelaPrincipalPage } from '../tela-principal/tela-principal';
 
 @Component({
@@ -11,11 +11,20 @@ export class LoginPage {
   cpf = "";
   response: string;
 
-  constructor(public navCtrl: NavController) { }
+  constructor(public navCtrl: NavController, private alertCtrl: AlertController) { }
   
   ionViewWillEnter() {
     this.response = '';
     this.cpf = '';
+  }
+
+  presentAlert() {
+      let alert = this.alertCtrl.create({
+        title: 'CPF Inválido',
+        subTitle: 'Insira um CPF válido',
+        buttons: ['Ok']
+      });
+      alert.present();
   }
 
   validaCPF(cpf){
@@ -58,7 +67,7 @@ export class LoginPage {
     // if (!params) params = {}
     if (!this.validaCPF(this.cpf)){
       console.log('CPF INVÁLIDO');
-      this.response = 'CPF INVÁLIDO. Insira outro valor.';
+      this.presentAlert();
     } else {
       console.log('CPF VÁLIDO!');
       this.navCtrl.push(TelaPrincipalPage, {cpf: this.cpf});    

@@ -20,7 +20,7 @@ export class TelaPrincipalPage {
   lng: any;
   cpf: "";
   coords: any;
-  location: any;
+  // location: any;
   response: string;
 
   constructor(
@@ -30,6 +30,10 @@ export class TelaPrincipalPage {
     public navParams: NavParams,
     private http: HTTP
     ) {}
+
+    ionViewWillEnter() {
+      this.response = '';
+    }
     
     /*startBackgroundLoc(){
       console.log('inicializa startBackgroundLoc');
