@@ -54,6 +54,15 @@ export class TelaPrincipalPage {
       alert.present();
     }
     
+    alertaAtivarGeoloc() {
+      let alert = this.alertCtrl.create({
+        title: 'Erro de localização',
+        subTitle: 'Erro ao capturar localização. Em [Configuração > Apps] , confirme se a permissão de [LOCAL] está ativada',
+        buttons: ['Ok']
+      });
+      alert.present();
+    }
+
     /*startBackgroundLoc(){
       console.log('inicializa startBackgroundLoc');
 
@@ -108,7 +117,10 @@ export class TelaPrincipalPage {
         this.alertaPresenca();
       }
       console.log(dist);
-    }).catch((err) => console.log('Error getting location', err));
+    }).catch((err) => {
+      console.log('Erro ao tentar capturar geolocalização', err);
+      this.alertaAtivarGeoloc();
+    });
   }
 
   sendLoc(presenca: number){
