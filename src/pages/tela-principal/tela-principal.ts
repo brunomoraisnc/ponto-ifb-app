@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   // BackgroundGeolocationEvents
 } from '@ionic-native/background-geolocation';*/
 import { HTTP } from '@ionic-native/http';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 
 @Component({
@@ -28,11 +28,30 @@ export class TelaPrincipalPage {
     // private backgroundGeolocation: BackgroundGeolocation,
     public geo: Geolocation,
     public navParams: NavParams,
-    private http: HTTP
+    private http: HTTP,
+    private alertCtrl: AlertController
     ) {}
 
     ionViewWillEnter() {
       this.response = '';
+    }
+
+    alertaAusencia() {
+      let alert = this.alertCtrl.create({
+        title: 'Ausência registrada',
+        subTitle: 'Vá para a área do evento e não se esqueca de confirmar sua presença',
+        buttons: ['Entendido']
+      });
+      alert.present();
+    }
+
+    alertaPresenca() {
+      let alert = this.alertCtrl.create({
+        title: 'Presença registrada',
+        subTitle: 'Promete aproveitar bastante o evento?',
+        buttons: ['Prometo']
+      });
+      alert.present();
     }
     
     /*startBackgroundLoc(){
@@ -81,10 +100,12 @@ export class TelaPrincipalPage {
       // Verifica presenca
       if (dist > 0.09287030236638635) {
         this.sendLoc(0);
-        this.response = 'Presença não identificada. Volte para a área do evento!';
+        // this.response = 'Presença não identificada. Volte para a área do evento!';
+        this.alertaAusencia();
       } else {
         this.sendLoc(1);
-        this.response = 'Presença registrada!';
+        // this.response = 'Presença registrada!';
+        this.alertaPresenca();
       }
       console.log(dist);
     }).catch((err) => console.log('Error getting location', err));
