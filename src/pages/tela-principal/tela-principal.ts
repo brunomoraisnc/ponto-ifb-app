@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
 import { HTTP } from '@ionic-native/http';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
+import { Device } from '@ionic-native/device';
 
 @Component({
   selector: 'page-tela-principal',
@@ -29,11 +30,13 @@ export class TelaPrincipalPage {
     public geo: Geolocation,
     public navParams: NavParams,
     private http: HTTP,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private device: Device
     ) {}
 
     ionViewWillEnter() {
       this.response = '';
+      console.log('Device UUID is: ' + this.device.uuid);
     }
 
     alertaAusencia() {
@@ -116,9 +119,9 @@ export class TelaPrincipalPage {
         // this.response = 'Presença registrada!';
         this.alertaPresenca();
       }
-      console.log(dist);
+      console.log('Distância: ' + dist);
     }).catch((err) => {
-      console.log('Erro ao tentar capturar geolocalização', err);
+      console.log('Erro ao tentar capturar geolocalização: ', err);
       this.alertaAtivarGeoloc();
     });
   }

@@ -2,6 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HTTP } from '@ionic-native/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { Device } from '@ionic-native/device';
 // import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
 import { Geolocation } from '@ionic-native/geolocation';
 // import { AlertController } from '@ionic/angular';
@@ -37,6 +38,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     // BackgroundGeolocationResponse,
     Geolocation,
     HTTP,
+    Device,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
