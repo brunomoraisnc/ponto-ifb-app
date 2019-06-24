@@ -9,12 +9,16 @@ import { TelaPrincipalPage } from '../tela-principal/tela-principal';
 export class LoginPage {
 
   cpf = "";
+  response: string;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController) { }
+  
+  ionViewWillEnter() {
+    this.response = '';
+    this.cpf = '';
   }
 
-  validaCPF(cpf)
-  {
+  validaCPF(cpf){
     var numeros, digitos, soma, i, resultado, digitos_iguais;
     digitos_iguais = 1;
     if (cpf.length < 11)
@@ -54,6 +58,7 @@ export class LoginPage {
     // if (!params) params = {}
     if (!this.validaCPF(this.cpf)){
       console.log('CPF INVÁLIDO');
+      this.response = 'CPF INVÁLIDO. Insira outro valor.';
     } else {
       console.log('CPF VÁLIDO!');
       this.navCtrl.push(TelaPrincipalPage, {cpf: this.cpf});    
