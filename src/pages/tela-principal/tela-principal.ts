@@ -146,6 +146,7 @@ export class TelaPrincipalPage {
         console.error('JSON parsing error');
       }
     }, function(response) {
+      console.log('Erro na requisição à API')
       // prints 403
       console.log(response.status);
 
@@ -161,7 +162,8 @@ export class TelaPrincipalPage {
           lat1: latitude ponto 1
           lon1: longitude ponto 1
           lat2: latitude ponto 2
-          lon2: longitude ponto 2        
+          lon2: longitude ponto 2
+          unit: unidade de medida
     */
     if ((lat1 == lat2) && (lon1 == lon2)) {
       return 0;
