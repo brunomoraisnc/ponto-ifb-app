@@ -69,8 +69,8 @@ export class TelaPrincipalPage {
     startBackgroundLoc(){
       console.log('inicializa startBackgroundLoc');
 
-      let watch = this.geo.watchPosition({timeout: 5000});
-      
+      let watch = this.geo.watchPosition({enableHighAccuracy: true, timeout: 5000});
+
       watch.subscribe((data) => {
         this.lat = data.coords.latitude;
         this.lng = data.coords.longitude;
