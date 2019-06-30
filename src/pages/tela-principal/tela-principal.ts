@@ -66,32 +66,22 @@ export class TelaPrincipalPage {
       alert.present();
     }
 
-    /*startBackgroundLoc(){
+    startBackgroundLoc(){
       console.log('inicializa startBackgroundLoc');
 
-      const config: BackgroundGeolocationConfig = {
-        desiredAccuracy: 10,
-        stationaryRadius: 20,
-        distanceFilter: 30,
-        debug: true, //  enable this hear sounds for background-geolocation life-cycle.
-        stopOnTerminate: false, // enable this to clear background location settings when the app terminates
-      };
+      let watch = this.geo.watchPosition({timeout: 5000});
       
-      this.backgroundGeolocation.configure(config)
-      .then(() => {
-          this.backgroundGeolocation.on('location').subscribe((location: BackgroundGeolocationResponse) => {
-            this.location = location;
-            console.log(this.location);
-          // IMPORTANT:  You must execute the finish method here to inform the native plugin that you're finished,
-          // and the background-task may be completed.  You must do this regardless if your operations are successful or not.
-          // IF YOU DON'T, ios will CRASH YOUR APP for spending too much time in the background.
-          // this.backgroundGeolocation.finish(); // FOR IOS ONLY
-        });
+      watch.subscribe((data) => {
+        this.lat = data.coords.latitude;
+        this.lng = data.coords.longitude;
+
+        console.log(data.coords.latitude);
+        console.log(data.coords.longitude);
+      // data can be a set of coordinates, or an error (if an error occurred).
+      // data.coords.latitude
+      // data.coords.longitude
       });
-        
-      // start recording location
-      this.backgroundGeolocation.start();
-    }*/
+    }
 
   getLoc(){
     /* descricao: Captura localização */
