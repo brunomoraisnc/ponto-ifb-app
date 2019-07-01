@@ -69,22 +69,62 @@ export class TelaPrincipalPage {
     startBackgroundLoc(){
       console.log('inicializa startBackgroundLoc');
 
-      let watch = this.geo.watchPosition({enableHighAccuracy: true, timeout: 5000});
+      this.cpf = this.navParams.get('cpf');
+
+      let watch = this.geo.watchPosition({enableHighAccuracy: true, timeout: 10000, maximumAge: 10000});
+
+      // define latitude e longitude do evento
+      let event_lat = -15.753827;
+      let event_lng = -47.878808;
+      let unit = "K";
+      let cont = 0;
 
       watch.subscribe((data) => {
-        this.lat = data.coords.latitude;
-        this.lng = data.coords.longitude;
+        if (cont == 0){
+          this.lat = data.coords.latitude;
+          this.lng = data.coords.longitude;
+          cont = 1;
+        }
+        
+        let dist = this.distance(this.lat, this.lng, data.coords.latitude, data.coords.longitude, unit);
 
-        console.log(data.coords.latitude);
-        console.log(data.coords.longitude);
-      // data can be a set of coordinates, or an error (if an error occurred).
-      // data.coords.latitude
-      // data.coords.longitude
+        console.log(data.coords.latitude + ' ' + data.coords.longitude);
+        console.log('Distância: ' + dist);
+
+        if (dist > 0.005) {
+          console.log('Distância alterada acima de 5m!!!');
+          console.log(data.coords.latitude + ' ' + data.coords.longitude);
+
+          this.lat = data.coords.latitude;
+          this.lng = data.coords.longitude;
+
+          // calcula distancia
+          console.log('Calcula distância do evento');
+          this.response = 'Calculando distância';
+          let dist_event = this.distance(this.lat, this.lng, event_lat, event_lng, unit);
+
+          // Verifica presenca
+          if (dist_event > 0.09287030236638635) {
+            this.sendLoc(0);
+            // this.response = 'Presença não identificada. Volte para a área do evento!';
+            this.alertaAusencia();
+          } else {
+            this.sendLoc(1);
+            // this.response = 'Presença registrada!';
+            this.alertaPresenca();
+          }
+        } else {
+          console.log(data.coords.latitude + ' ' + data.coords.longitude);
+        }
+
+        // data can be a set of coordinates, or an error (if an error occurred).
+        // data.coords.latitude
+        // data.coords.longitude
       });
     }
 
-  getLoc(){
-    /* descricao: Captura localização */
+  /*getLoc(){
+    // descricao: Captura localização
     this.geo.getCurrentPosition().then( (pos) => {
       this.lat = pos.coords.latitude;
       this.lng = pos.coords.longitude;
@@ -114,7 +154,7 @@ export class TelaPrincipalPage {
       console.log('Erro ao tentar capturar geolocalização: ', err);
       this.alertaAtivarGeoloc();
     });
-  }
+}*/
 
   sendLoc(presenca: number){
    
