@@ -10,6 +10,8 @@ import { HTTP } from '@ionic-native/http';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Device } from '@ionic-native/device';
+import { ToastController } from 'ionic-angular';
+
 
 @Component({
   selector: 'page-tela-principal',
@@ -31,6 +33,7 @@ export class TelaPrincipalPage {
     public navParams: NavParams,
     private http: HTTP,
     private alertCtrl: AlertController,
+    public toastController: ToastController,
     private device: Device
     ) {}
 
@@ -39,22 +42,20 @@ export class TelaPrincipalPage {
       console.log('Device UUID is: ' + this.device.uuid);
     }
 
-    alertaAusencia() {
-      let alert = this.alertCtrl.create({
-        title: 'Ausência registrada',
-        subTitle: 'Vá para a área do evento e não se esqueca de confirmar sua presença',
-        buttons: ['Entendido']
+    async alertaAusencia() {
+      const toast = await this.toastController.create({
+        message: 'Ausência registrada',
+        duration: 2000
       });
-      alert.present();
+      toast.present();
     }
 
-    alertaPresenca() {
-      let alert = this.alertCtrl.create({
-        title: 'Presença registrada',
-        subTitle: 'Promete aproveitar bastante o evento?',
-        buttons: ['Prometo']
+    async alertaPresenca() {
+      const toast = await this.toastController.create({
+        message: 'Presença registrada',
+        duration: 2000
       });
-      alert.present();
+      toast.present();
     }
     
     alertaAtivarGeoloc() {
@@ -91,8 +92,8 @@ export class TelaPrincipalPage {
         console.log(data.coords.latitude + ' ' + data.coords.longitude);
         console.log('Distância: ' + dist);
 
-        if (dist > 0.005) {
-          console.log('Distância alterada acima de 5m!!!');
+        if (dist > 0.001) {
+          console.log('Distância alterada acima de 10 m');
           console.log(data.coords.latitude + ' ' + data.coords.longitude);
 
           this.lat = data.coords.latitude;
