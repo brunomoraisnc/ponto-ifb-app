@@ -22,7 +22,7 @@ Download the repository files:
 
 `git clone https://github.com/brunomoraisnc/trabalhoppi.git`
 
-Go to the `workppi` folder and install NPM + NODEJS:
+Go to the `trabalhoppi` folder and install NPM + NODEJS:
 
 `https://nodejs.org/en/`
 
