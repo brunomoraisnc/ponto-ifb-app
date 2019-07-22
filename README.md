@@ -16,11 +16,6 @@ Native components:
 
 [HTTP](https://ionicframework.com/docs/v3/native/http/)
 
-## More information about the project
-The project was developed during the course of Internet Programming 2 of the Internet Systems course of the Federal Institute of Brasília, with the support of [Professor Fábio Henrique](https://sites.google.com/view/oliveirafhm/home).
-
-Another module of the project comprises [development of a REST API] (https://github.com/brunomoraisnc/api-rest-ppi) hosted on the HEROKU cloud application platform.
-
 ## Setup
 
 Download the repository files:
@@ -38,3 +33,8 @@ Then the Ionic CLI via NPM:
 Run the server:
 
 `ionic serve`
+
+## More information about the project
+The project was developed during the course of Internet Programming 2 of the Internet Systems course of the Federal Institute of Brasília, with the support of [Professor Fábio Henrique](https://sites.google.com/view/oliveirafhm/home).
+
+Another module of the project comprises [development of a REST API] (https://github.com/brunomoraisnc/api-rest-ppi) hosted on the HEROKU cloud application platform.
