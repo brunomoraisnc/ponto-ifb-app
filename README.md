@@ -1,9 +1,9 @@
 # Event Attendance Control Project
 
-## Introdução
+## Introduction
 Event attendance control mobile app development.
 
-## Objetivo
+## Objectives
 - To facilitate the monitoring of students in events of the Federal Institute of Brasília;
 - Automate task executed by teachers.
 
