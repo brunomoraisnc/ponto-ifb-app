@@ -12,11 +12,26 @@
   </div>
   <img src="assets/img/i8CaQyuqTLa1UuZMsJAS_map.jpg" style="display:block;width:100%;height:auto;margin-left:auto;margin-right:auto;" />
   <div class="spacer" style="width:300px;height:33px;" id="telaPrincipal-spacer6"></div>
-  <button id="telaPrincipal-button4" ion-button color="dark" block icon-left style="border-radius:25px 25px 25px 25px;" (click)="startBackgroundLoc()">
+  <!--<button id="telaPrincipal-button4" ion-button color="dark" block icon-left style="border-radius:25px 25px 25px 25px;" (click)="startBackgroundLoc()">
     <ion-icon name="checkmark-circle-outline"></ion-icon>
     Confirmar presença!
+  </button>-->
+  <button id="telaPrincipal-button5" ion-button color="dark" block icon-left style="border-radius:25px 25px 25px 25px;" (click)="startBackgroundTracking()">
+    <ion-icon name="checkmark-circle-outline"></ion-icon>
+    
+    Iniciar monitoramento
   </button>
-  <p>Lat: {{ lat }}</p>
+  <button id="telaPrincipal-button5" ion-button color="dark" block icon-left style="border-radius:25px 25px 25px 25px;" (click)="stopBackgroundTracking()">
+    <ion-icon name="checkmark-circle-outline"></ion-icon>
+    Parar monitoramento
+  </button>
+  <!--<p>Lat: {{ lat }}</p>
   <p>Lng: {{ lng }}</p>
-  <p>{{ response }}</p>
+  <p>{{ response }}</p>-->
+  <ion-item *ngFor="let location of locations;">
+    <ion-label><b>Latitude:</b>{{ location.latitude }}</ion-label>
+    <ion-label><b>Longitude:</b>{{ location.longitude }}</ion-label>
+    <ion-label><b>Speed:</b>{{ location.speed }}</ion-label>
+    <ion-label><b>Time:</b>{{ location.time }}</ion-label>
+  </ion-item>
 </ion-content>

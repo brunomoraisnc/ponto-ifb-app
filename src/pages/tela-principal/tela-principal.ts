@@ -12,13 +12,13 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Device } from '@ionic-native/device';
 import { ToastController } from 'ionic-angular';
 
-
+declare var window;
 @Component({
   selector: 'page-tela-principal',
   templateUrl: 'tela-principal.html'
 })
 export class TelaPrincipalPage {
-
+  locations: any;
   lat: any;
   lng: any;
   cpf: "";
@@ -35,7 +35,21 @@ export class TelaPrincipalPage {
     private alertCtrl: AlertController,
     public toastController: ToastController,
     private device: Device
-    ) {}
+    ) {
+      this.locations = [];
+    }
+
+    startBackgroundTracking(){
+      window.app.backgroundGeolocation.start();
+    }
+
+    stopBackgroundTracking(){
+      window.app.backgroundGeolocation.stop();
+    }
+
+    getLocations(){
+      this.locations = (JSON.parse(localStorage.getItem("location")) == null)?[]:JSON.parse(localStorage.getItem("location"));
+    }
 
     ionViewWillEnter() {
       this.response = '';
