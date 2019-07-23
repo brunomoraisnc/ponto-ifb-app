@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 } from '@ionic-native/background-geolocation';*/
 import { HTTP } from '@ionic-native/http';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
-import { Geolocation } from '@ionic-native/geolocation';
+// import { Geolocation } from '@ionic-native/geolocation';
 import { Device } from '@ionic-native/device';
 import { ToastController } from 'ionic-angular';
 
@@ -29,7 +29,7 @@ export class TelaPrincipalPage {
   constructor(
     public navCtrl: NavController,
     // private backgroundGeolocation: BackgroundGeolocation,
-    public geo: Geolocation,
+    // public geo: Geolocation,
     public navParams: NavParams,
     private http: HTTP,
     private alertCtrl: AlertController,
@@ -72,14 +72,14 @@ export class TelaPrincipalPage {
 
       this.cpf = this.navParams.get('cpf');
 
-      let watch = this.geo.watchPosition({enableHighAccuracy: true, timeout: 10000, maximumAge: 10000});
+      // let watch = this.geo.watchPosition({enableHighAccuracy: true, timeout: 10000, maximumAge: 10000});
 
       // define latitude e longitude do evento
       let event_lat = -15.753827;
       let event_lng = -47.878808;
       let unit = "K";
       let cont = 0;
-
+      /*
       watch.subscribe((data) => {
         if (cont == 0){
           this.lat = data.coords.latitude;
@@ -122,6 +122,7 @@ export class TelaPrincipalPage {
         // data.coords.latitude
         // data.coords.longitude
       });
+      */
     }
 
   /*getLoc(){
