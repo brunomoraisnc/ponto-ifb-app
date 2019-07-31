@@ -40,6 +40,7 @@ export class TelaPrincipalPage {
     }
 
     startBackgroundTracking(){
+      console.log("rodando startBackground");
       window.app.backgroundGeolocation.start();
     }
 

@@ -8,7 +8,7 @@ import {
   BackgroundGeolocationConfig,
   BackgroundGeolocationResponse,
   BackgroundGeolocationEvents
-} from '@ionic-native/background-geolocation';
+} from '@ionic-native/background-geolocation/ngx';
 
 
 import { LoginPage } from '../pages/login/login';

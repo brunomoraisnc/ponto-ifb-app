@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HTTP } from '@ionic-native/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Device } from '@ionic-native/device';
-import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
+import { BackgroundGeolocation } from '@ionic-native/background-geolocation/ngx';
 // import { Geolocation } from '@ionic-native/geolocation';
 // import { AlertController } from '@ionic/angular';
 // import { HTTP } from '@ionic-native/http';
