@@ -5,7 +5,7 @@ Event attendance control mobile app development.
 
 ## Objectives
 - To facilitate the monitoring of students in events of the Federal Institute of Brasília;
-- Automate task executed by teachers.
+- To automate a task executed by teachers.
 
 ## Technologies
 [**IONIC Framework**](https://ionicframework.com/)
@@ -35,6 +35,6 @@ Run the server:
 `ionic serve`
 
 ## More information about the project
-The project was developed during the course of Internet Programming 2 of the Internet Systems course of the Federal Institute of Brasília, with the support of [Professor Fábio Henrique](https://sites.google.com/view/oliveirafhm/home).
+The project was developed with the support of [Professor Fábio Henrique](https://sites.google.com/view/oliveirafhm/home) during the Internet Programming 2 discipline of the Federal Institute of Brasília's Internet Systems course. 
 
 Another module of the project comprises [a REST API development](https://github.com/brunomoraisnc/api-rest-ppi) hosted on the HEROKU cloud application platform.
