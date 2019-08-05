@@ -8,7 +8,7 @@ import {
   BackgroundGeolocationConfig,
   BackgroundGeolocationResponse,
   BackgroundGeolocationEvents
-} from '@ionic-native/background-geolocation/ngx';
+} from '@ionic-native/background-geolocation';
 
 
 import { LoginPage } from '../pages/login/login';
@@ -48,20 +48,24 @@ export class MyApp {
         stopOnTerminate: false
       }
 
-      this.backgroundGeolocation.configure(config).then(()=>{
-
-        this.backgroundGeolocation.on(BackgroundGeolocationEvents.location).subscribe((location:BackgroundGeolocationResponse)=>{
-          let locationstr = localStorage.getItem("location");
-          
-          if(locationstr == null){
-            this.arr.push(location);
-          } else {
-            let locationarr = JSON.parse(locationstr);
-            this.arr = locationstr;
-          }
-          localStorage.setItem("location", JSON.stringify(this.arr));
-        })
-      })
+      this.backgroundGeolocation.configure(config).then(() => {
+        this.backgroundGeolocation
+          .on(BackgroundGeolocationEvents.location)
+            .subscribe((location:BackgroundGeolocationResponse) => {
+              console.log(location);
+              /*
+              let locationstr = localStorage.getItem("location");
+              
+              if(locationstr == null){
+                this.arr.push(location);
+              } else {
+                let locationarr = JSON.parse(locationstr);
+                this.arr = locationstr;
+              }
+              localStorage.setItem("location", JSON.stringify(this.arr));
+              */
+        });
+      });
       window.app = this;
     });
 
