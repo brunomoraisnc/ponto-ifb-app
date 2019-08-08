@@ -21,6 +21,8 @@ declare var window;
 export class MyApp {
   rootPage:any = LoginPage;
   arr: any;
+  cpf: string;
+  deviceUUID: string;
 
   constructor(
     private platform: Platform,
@@ -31,14 +33,34 @@ export class MyApp {
     this.initializeApp();
   }
 
-  initializeApp(){
+  setCPF(cpf){
+    this.cpf = cpf;
+  }
 
+  getCPF(){
+    return this.cpf;
+  }
+
+  setDeviceUUID(deviceUUID){
+    this.deviceUUID = deviceUUID;
+  }
+
+  getDeviceUUID(){
+    return this.deviceUUID;
+  }
+
+  initializeApp(){
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.arr = [];
+
+      const event_lat = -15.753827;
+      const event_lng = -47.878808;
+      const unit = "K";
+
+      let presence = 0;
       
       const config: BackgroundGeolocationConfig = {
         desiredAccuracy: 10,
@@ -47,12 +69,31 @@ export class MyApp {
         debug: true,
         stopOnTerminate: false
       }
+      // let locations = [];
 
       this.backgroundGeolocation.configure(config).then(() => {
         this.backgroundGeolocation
           .on(BackgroundGeolocationEvents.location)
             .subscribe((location:BackgroundGeolocationResponse) => {
               console.log(location);
+
+              // locations.push(location.latitude);
+              // console.log(locations);
+              // window.TelaPrincipalPage.startBackgroundLoc();
+
+              // let dist = window.TelaPrincipalPage.distance(event_lat, event_lng, location.latitude, location.longitude, unit);
+              
+              // Verifica presenca
+              // presence = dist > 0.09287030236638635 ? 0:1;
+
+              // window.TelaPrincipalPage.sendLoc(
+              //   presence,
+              //   this.getCPF(),
+              //   this.getDeviceUUID(),
+              //   location.latitude,
+              //   location.longitude
+              // );
+              
               /*
               let locationstr = localStorage.getItem("location");
               

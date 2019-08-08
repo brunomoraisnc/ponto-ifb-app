@@ -41,6 +41,10 @@ export class TelaPrincipalPage {
 
     startBackgroundTracking(){
       console.log("rodando startBackground");
+      this.cpf = this.navParams.get('cpf');
+      window.app.setCPF(this.cpf)
+      window.app.setDeviceUUID(this.device.uuid);
+      window.TelaPrincipalPage = this;
       window.app.backgroundGeolocation.start();
     }
 
@@ -84,16 +88,16 @@ export class TelaPrincipalPage {
 
     startBackgroundLoc(){
       console.log('inicializa startBackgroundLoc');
-
-      this.cpf = this.navParams.get('cpf');
-
       // let watch = this.geo.watchPosition({enableHighAccuracy: true, timeout: 10000, maximumAge: 10000});
 
       // define latitude e longitude do evento
-      let event_lat = -15.753827;
-      let event_lng = -47.878808;
-      let unit = "K";
-      let cont = 0;
+      // let event_lat = -15.753827;
+      // let event_lng = -47.878808;
+      // let unit = "K";
+      
+      // let dist = this.distance(this.lat, this.lng, data.coords.latitude, data.coords.longitude, unit);
+
+      // let cont = 0;
       /*
       watch.subscribe((data) => {
         if (cont == 0){
@@ -173,16 +177,16 @@ export class TelaPrincipalPage {
     });
 }*/
 
-  sendLoc(presenca: number){
+  sendLoc(presenca: number, cpf: string, mac: string, lat: number, lng: number){
    
     /* DEF: Envia locatização para a API
      * PARAMS:
      *    presenca: presenca do aluno [0, 1]
     */
 
-    this.coords = this.lat + " " + this.lng;
+    let coords = lat + " " + lng;
     this.http.post('https://api-rest-ppi.herokuapp.com/api-item/',
-    { "cpf": this.cpf, "mac":"11", "coords": this.coords, "presenca": presenca }, { }).then(function(response) {
+    { "cpf": cpf, "mac": mac, "coords": coords, "presenca": presenca }, { }).then(function(response) {
       // prints 200
       console.log(response.status);
       try {
@@ -231,5 +235,6 @@ export class TelaPrincipalPage {
       if (unit=="N") { dist = dist * 0.8684 }
       return dist;
     }
+    
   }
 }
