@@ -32,7 +32,7 @@
     "@ionic-native/status-bar": "~4.20.0",
     "@ionic/pro": "2.0.4",
     "@ionic/storage": "2.2.0",
-    "@mauron85/cordova-plugin-background-geolocation": "3.0.3",
+    "@mauron85/cordova-plugin-background-geolocation": "^3.0.3",
     "cordova-android": "8.0.0",
     "cordova-browser": "6.0.0",
     "cordova-plugin-advanced-http": "2.1.1",

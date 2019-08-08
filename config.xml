@@ -89,8 +89,8 @@
     </plugin>
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <plugin name="cordova-plugin-x-toast" spec="^2.7.2" />
-    <plugin name="cordova-plugin-mauron85-background-geolocation" spec="~3.0.0-alpha.50" />
     <plugin name="cordova-plugin-advanced-http" spec="2.1.1" />
+    <plugin name="cordova-plugin-mauron85-background-geolocation" spec="~3.0.0-alpha.50" />
     <engine name="android" spec="8.0.0" />
     <engine name="browser" spec="6.0.0" />
 </widget>
