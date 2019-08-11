@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { HTTP } from '@ionic-native/http';
 
 import {
   BackgroundGeolocation,
@@ -28,7 +29,8 @@ export class MyApp {
     private platform: Platform,
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
-    private backgroundGeolocation: BackgroundGeolocation  
+    private backgroundGeolocation: BackgroundGeolocation,
+    private http: HTTP
   ) {
     this.initializeApp();
   }
@@ -64,10 +66,11 @@ export class MyApp {
       
       const config: BackgroundGeolocationConfig = {
         desiredAccuracy: 10,
-        stationaryRadius: 20,
-        distanceFilter: 30,
+        stationaryRadius: 1,
+        distanceFilter: 1,
         debug: true,
-        stopOnTerminate: false
+        stopOnTerminate: false,
+        interval: 10000
       }
       // let locations = [];
 
@@ -81,18 +84,18 @@ export class MyApp {
               // console.log(locations);
               // window.TelaPrincipalPage.startBackgroundLoc();
 
-              // let dist = window.TelaPrincipalPage.distance(event_lat, event_lng, location.latitude, location.longitude, unit);
+              let dist = window.TelaPrincipalPage.distance(event_lat, event_lng, location.latitude, location.longitude, unit);
               
               // Verifica presenca
-              // presence = dist > 0.09287030236638635 ? 0:1;
+              presence = dist > 0.09287030236638635 ? 0:1;
 
-              // window.TelaPrincipalPage.sendLoc(
-              //   presence,
-              //   this.getCPF(),
-              //   this.getDeviceUUID(),
-              //   location.latitude,
-              //   location.longitude
-              // );
+              this.sendLoc(
+                presence,
+                this.getCPF(),
+                this.getDeviceUUID(),
+                location.latitude,
+                location.longitude
+              );
               
               /*
               let locationstr = localStorage.getItem("location");
@@ -109,8 +112,43 @@ export class MyApp {
       });
       window.app = this;
     });
-
-    
   }
-  
+
+  sendLoc(presenca: number, cpf: string, mac: string, lat: number, lng: number){
+   
+    /* DEF: Envia locatização para a API
+     * PARAMS:
+     *    presenca: presenca do aluno [0, 1]
+    */
+
+    let coords = lat + " " + lng;
+    this.http.post('https://api-rest-ppi.herokuapp.com/api-item/',
+    {
+      "cpf": cpf,
+      "mac": mac,
+      "coords": coords,
+      "presenca": presenca
+    }, { }).then(function(response) {
+      // prints 200
+      console.log(response.status);
+      try {
+        response.data = JSON.parse(response.data);
+        // prints test
+        console.log(response.data.message);
+      } catch(e) {
+        console.error('JSON parsing error');
+      }
+    }, function(response) {
+      console.log('Erro na requisição à API')
+      // prints 403
+      console.log(response.status);
+
+      //prints Permission denied
+      console.log(response.error);
+    });
+  }
+
+  getLocations(){
+    console.log(this.backgroundGeolocation.getLocations());
+  }
 }

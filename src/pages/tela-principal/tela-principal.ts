@@ -31,7 +31,7 @@ export class TelaPrincipalPage {
     // private backgroundGeolocation: BackgroundGeolocation,
     // public geo: Geolocation,
     public navParams: NavParams,
-    private http: HTTP,
+    // private http: HTTP,
     private alertCtrl: AlertController,
     public toastController: ToastController,
     private device: Device
@@ -53,7 +53,8 @@ export class TelaPrincipalPage {
     }
 
     getLocations(){
-      this.locations = (JSON.parse(localStorage.getItem("location")) == null)?[]:JSON.parse(localStorage.getItem("location"));
+      // this.locations = (JSON.parse(localStorage.getItem("location")) == null)?[]:JSON.parse(localStorage.getItem("location"));
+      window.app.getLocations();
     }
 
     ionViewWillEnter() {
@@ -176,35 +177,6 @@ export class TelaPrincipalPage {
       this.alertaAtivarGeoloc();
     });
 }*/
-
-  sendLoc(presenca: number, cpf: string, mac: string, lat: number, lng: number){
-   
-    /* DEF: Envia locatização para a API
-     * PARAMS:
-     *    presenca: presenca do aluno [0, 1]
-    */
-
-    let coords = lat + " " + lng;
-    this.http.post('https://api-rest-ppi.herokuapp.com/api-item/',
-    { "cpf": cpf, "mac": mac, "coords": coords, "presenca": presenca }, { }).then(function(response) {
-      // prints 200
-      console.log(response.status);
-      try {
-        response.data = JSON.parse(response.data);
-        // prints test
-        console.log(response.data.message);
-      } catch(e) {
-        console.error('JSON parsing error');
-      }
-    }, function(response) {
-      console.log('Erro na requisição à API')
-      // prints 403
-      console.log(response.status);
-
-      //prints Permission denied
-      console.log(response.error);
-    });
-  }
   
   distance(lat1, lon1, lat2, lon2, unit) {
     /*
