@@ -80,15 +80,19 @@ export class MyApp {
             .subscribe((location:BackgroundGeolocationResponse) => {
               console.log(location);
 
-              // locations.push(location.latitude);
-              // console.log(locations);
-              // window.TelaPrincipalPage.startBackgroundLoc();
-
-              let dist = window.TelaPrincipalPage.distance(event_lat, event_lng, location.latitude, location.longitude, unit);
+              // Calcula distancia
+              let dist = window.TelaPrincipalPage.calcula_distancia(
+                event_lat,
+                event_lng,
+                location.latitude,
+                location.longitude,
+                unit
+              );
               
               // Verifica presenca
               presence = dist > 0.09287030236638635 ? 0:1;
 
+              // Envia localizacao via API
               this.sendLoc(
                 presence,
                 this.getCPF(),
@@ -96,18 +100,6 @@ export class MyApp {
                 location.latitude,
                 location.longitude
               );
-              
-              /*
-              let locationstr = localStorage.getItem("location");
-              
-              if(locationstr == null){
-                this.arr.push(location);
-              } else {
-                let locationarr = JSON.parse(locationstr);
-                this.arr = locationstr;
-              }
-              localStorage.setItem("location", JSON.stringify(this.arr));
-              */
         });
       });
       window.app = this;
