@@ -30,6 +30,12 @@ Then the Ionic CLI via NPM:
 
 `npm install -g ionic`
 
+The dependencies:
+
+`npm install`
+
+(If needed: `npm config set unsafe-perm true`)
+
 Run the server:
 
 `ionic serve`
