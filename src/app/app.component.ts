@@ -68,7 +68,7 @@ export class MyApp {
         desiredAccuracy: 10,
         stationaryRadius: 1,
         distanceFilter: 1,
-        debug: true,
+        debug: false,
         stopOnTerminate: false,
         interval: 10000
       }
