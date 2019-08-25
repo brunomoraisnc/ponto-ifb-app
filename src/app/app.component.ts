@@ -137,6 +137,7 @@ export class MyApp {
 
       //prints Permission denied
       console.log(response.error);
+      window.TelaPrincipalPage.presentToastRequestError();
     });
   }
 

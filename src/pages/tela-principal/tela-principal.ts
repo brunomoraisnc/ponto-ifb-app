@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToastController } from 'ionic-angular';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Device } from '@ionic-native/device';
 
@@ -16,8 +17,9 @@ export class TelaPrincipalPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    public toastCtrl: ToastController,
     private alertCtrl: AlertController,
-    private device: Device
+    private device: Device,
     ) {
       this.button_status = false;
     }
@@ -46,6 +48,16 @@ export class TelaPrincipalPage {
       this.response = '';
       console.log('Device UUID is: ' + this.device.uuid);
     }
+    presentToastRequestError() {
+      const msg = 'Não foi possível registrar sua presença. Conecte-se à internet.';
+      const toast = this.toastCtrl.create({
+        message: msg,
+        duration: 18000,
+        position: 'top',
+      });
+      toast.present();
+    }
+    
     
     alertaAtivarGeoloc() {
       let alert = this.alertCtrl.create({
