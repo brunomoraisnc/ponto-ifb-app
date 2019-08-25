@@ -10,24 +10,31 @@ declare var window;
 export class TelaPrincipalPage {
   cpf: "";
   response: string;
+  buttonColor: string = '#000';
+  button_status: boolean;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private alertCtrl: AlertController,
     private device: Device
-    ) { }
+    ) {
+      this.button_status = false;
+    }
 
     startBackgroundTracking(){
       console.log("rodando startBackground");
       this.cpf = this.navParams.get('cpf');
+      // this.button_status? true : false;
       window.app.setCPF(this.cpf)
       window.app.setDeviceUUID(this.device.uuid);
       window.TelaPrincipalPage = this;
       window.app.backgroundGeolocation.start();
+      this.buttonColor = this.buttonColor == '#d32f2f'? '#d32f2f' : '#222428';
     }
 
     stopBackgroundTracking(){
+      this.buttonColor = '#222428';
       window.app.backgroundGeolocation.stop();
     }
 

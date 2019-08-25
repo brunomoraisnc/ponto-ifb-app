@@ -7,7 +7,7 @@
 </ion-header>
 <ion-content padding id="page3">
   <div class="spacer" style="height:100px;" id="telaPrincipal-spacer5"></div>
-  <div style="width:100%;margin:0px 0px;line-height:250px;background-color:#e8ebef;text-align:center;">
+  <div style="width:100%;margin:0px 0px;line-height:250px;background-color:#f9fbe7;text-align:center;">
     <i class="icon ion-image" style="font-size:64px;color:#888;vertical-align:middle;"></i>
   </div>
   <img src="assets/img/i8CaQyuqTLa1UuZMsJAS_map.jpg" style="display:block;width:100%;height:auto;margin-left:auto;margin-right:auto;" />
@@ -16,7 +16,7 @@
     <ion-icon name="checkmark-circle-outline"></ion-icon>
     Confirmar presença!
   </button>-->
-  <button id="telaPrincipal-button5" ion-button color="dark" block icon-left style="border-radius:25px 25px 25px 25px;" (click)="startBackgroundTracking()">
+  <button id="telaPrincipal-button5" ion-button [ngStyle]="{'background-color': buttonColor}" block icon-left style="border-radius:25px 25px 25px 25px;" (click)="startBackgroundTracking()">
     <ion-icon name="checkmark-circle-outline"></ion-icon>
     
     Iniciar monitoramento
