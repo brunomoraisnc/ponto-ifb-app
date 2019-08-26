@@ -12,7 +12,7 @@
     <i class="icon ion-image" style="font-size:64px;color:#888;vertical-align:middle;"></i>
   </div>  
   -->
-  <img src="assets/img/map.png" style="display:block;width:30%;height:auto;margin-left:auto;margin-right:auto;" />
+  <img src="assets/img/map.png" style="display:block;width:20%;height:auto;margin-left:auto;margin-right:auto;" />
   <h1 ion-text color="primary" align="center">Olá, seja bem-vindo(a)!</h1>
   <p>
     Antes de iniciar, <b>certifique-se de que o GPS do seu celular esteja ativado</b>
@@ -37,19 +37,22 @@
   </p>
   
   <div class="spacer" style="width:300px;height:10px;" id="telaPrincipal-spacer6"></div>
+  
   <!--<button id="telaPrincipal-button4" ion-button color="dark" block icon-left style="border-radius:25px 25px 25px 25px;" (click)="startBackgroundLoc()">
     <ion-icon name="checkmark-circle-outline"></ion-icon>
     Confirmar presença!
   </button>-->
+
   <button id="telaPrincipal-button5" ion-button color="primary" block icon-left style="border-radius:25px 25px 25px 25px;" (click)="startBackgroundTracking()">
     <ion-icon name="checkmark-circle-outline"></ion-icon>
-    
     Iniciar monitoramento
   </button>
-  <button id="telaPrincipal-button6" ion-button block outline color="dark" icon-left style="border-radius:25px 25px 25px 25px;" (click)="stopBackgroundTracking()">
+
+  <button id="telaPrincipal-button6" ion-button block outline color="dark" icon-left style="border-radius:25px 25px 25px 25px;" (click)="stopBackgroundTrackingAlert()">
     <ion-icon name="checkmark-circle-outline"></ion-icon>
     Parar monitoramento
   </button>
+
   <!--<p>Lat: {{ lat }}</p>
   <p>Lng: {{ lng }}</p>
   <p>{{ response }}</p>-->
