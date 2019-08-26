@@ -32,11 +32,12 @@ export class TelaPrincipalPage {
       window.app.setDeviceUUID(this.device.uuid);
       window.TelaPrincipalPage = this;
       window.app.backgroundGeolocation.start();
-      this.buttonColor = this.buttonColor == '#d32f2f'? '#d32f2f' : '#222428';
+      this.presentToastGeneral('Monitoramento iniciado');
+      // this.buttonColor = this.buttonColor == '#d32f2f'? '#d32f2f' : '#222428';
     }
 
     stopBackgroundTracking(){
-      this.buttonColor = '#222428';
+      // this.buttonColor = '#222428';
       window.app.backgroundGeolocation.stop();
     }
 
@@ -48,22 +49,47 @@ export class TelaPrincipalPage {
       this.response = '';
       console.log('Device UUID is: ' + this.device.uuid);
     }
+
     presentToastRequestError() {
       const msg = 'Erro de requisição. Verifique o acesso à internet.';
       const toast = this.toastCtrl.create({
         message: msg,
-        duration: 6000,
+        duration: 3000,
         position: 'top',
       });
       toast.present();
     }
-    
-    
-    alertaAtivarGeoloc() {
+
+    presentToastGeneral(msg) {
+      const toast = this.toastCtrl.create({
+        message: msg,
+        duration: 4000,
+        position: 'top',
+      });
+      toast.present();
+    }
+
+    stopBackgroundTrackingAlert() {
       let alert = this.alertCtrl.create({
-        title: 'Erro de localização',
-        subTitle: 'Erro ao capturar localização. Em [Configuração > Apps] , confirme se a permissão de [LOCAL] está ativada',
-        buttons: ['Ok']
+        title: 'Confirmar parada',
+        message: 'Você realmente deseja parar o monitoramento?',
+        buttons: [
+          {
+            text: 'Não',
+            role: 'cancel',
+            handler: () => {
+              console.log('Parada de monitoramento recusada');
+            }
+          },
+          {
+            text: 'Sim',
+            handler: () => {
+              this.stopBackgroundTracking();
+              this.presentToastGeneral('Monitoramento encerrado');
+              console.log('Monitoramento cancelado');
+            }
+          }
+        ]
       });
       alert.present();
     }
