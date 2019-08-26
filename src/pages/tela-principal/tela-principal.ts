@@ -49,10 +49,10 @@ export class TelaPrincipalPage {
       console.log('Device UUID is: ' + this.device.uuid);
     }
     presentToastRequestError() {
-      const msg = 'Não foi possível registrar sua presença. Conecte-se à internet.';
+      const msg = 'Erro de requisição. Verifique o acesso à internet.';
       const toast = this.toastCtrl.create({
         message: msg,
-        duration: 12000,
+        duration: 6000,
         position: 'top',
       });
       toast.present();
