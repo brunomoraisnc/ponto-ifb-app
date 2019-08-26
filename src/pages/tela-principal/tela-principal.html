@@ -6,14 +6,14 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding id="page3">
-  <div class="spacer" style="height:8%;" id="telaPrincipal-spacer5"></div>
   <!--
+  <div class="spacer" style="height:8%;" id="telaPrincipal-spacer5"></div>
   <div style="width:100%;margin:0px 0px;line-height:250px;background-color:#f9fbe7;text-align:center;">
     <i class="icon ion-image" style="font-size:64px;color:#888;vertical-align:middle;"></i>
   </div>  
-  img src="assets/img/i8CaQyuqTLa1UuZMsJAS_map.jpg" style="display:block;width:100%;height:auto;margin-left:auto;margin-right:auto;" />
   -->
-  <h1 ion-text color="primary">Olá, seja bem-vindo(a)!</h1>
+  <img src="assets/img/map.png" style="display:block;width:30%;height:auto;margin-left:auto;margin-right:auto;" />
+  <h1 ion-text color="primary" align="center">Olá, seja bem-vindo(a)!</h1>
   <p>
     Antes de iniciar, <b>certifique-se de que o GPS do seu celular esteja ativado</b>
   </p>
@@ -53,7 +53,7 @@
   <!--<p>Lat: {{ lat }}</p>
   <p>Lng: {{ lng }}</p>
   <p>{{ response }}</p>-->
-  <ion-list *ngFor="let location of locations;">
+  <!--ion-list *ngFor="let location of locations;">
     <ion-item>
       <ion-label><b>Latitude:</b>{{ location.latitude }}</ion-label>
     </ion-item>
@@ -67,4 +67,5 @@
       <ion-label><b>Time:</b>{{ location.time }}</ion-label>
     </ion-item>
   </ion-list>
+  -->
 </ion-content>
