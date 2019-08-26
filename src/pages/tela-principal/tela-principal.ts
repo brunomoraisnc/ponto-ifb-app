@@ -52,7 +52,7 @@ export class TelaPrincipalPage {
       const msg = 'Não foi possível registrar sua presença. Conecte-se à internet.';
       const toast = this.toastCtrl.create({
         message: msg,
-        duration: 18000,
+        duration: 12000,
         position: 'top',
       });
       toast.present();
