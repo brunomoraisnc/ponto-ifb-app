@@ -13,7 +13,7 @@ export class TelaPrincipalPage {
   response: string;
   buttonColor: string = '#000';
   button_status: boolean;
-
+  
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -23,7 +23,7 @@ export class TelaPrincipalPage {
     ) {
       this.button_status = false;
     }
-
+    
     startBackgroundTracking(){
       console.log("rodando startBackground");
       this.cpf = this.navParams.get('cpf');
@@ -35,21 +35,21 @@ export class TelaPrincipalPage {
       this.presentToastGeneral('Monitoramento iniciado');
       // this.buttonColor = this.buttonColor == '#d32f2f'? '#d32f2f' : '#222428';
     }
-
+    
     stopBackgroundTracking(){
       // this.buttonColor = '#222428';
       window.app.backgroundGeolocation.stop();
     }
-
+    
     getLocations(){
       window.app.getLocations();
     }
-
+    
     ionViewWillEnter() {
       this.response = '';
       console.log('Device UUID is: ' + this.device.uuid);
     }
-
+    
     presentToastRequestError() {
       const msg = 'Erro de requisição. Verifique o acesso à internet.';
       const toast = this.toastCtrl.create({
@@ -59,7 +59,7 @@ export class TelaPrincipalPage {
       });
       toast.present();
     }
-
+    
     presentToastGeneral(msg) {
       const toast = this.toastCtrl.create({
         message: msg,
@@ -68,7 +68,7 @@ export class TelaPrincipalPage {
       });
       toast.present();
     }
-
+    
     stopBackgroundTrackingAlert() {
       let alert = this.alertCtrl.create({
         title: 'Confirmar parada',
@@ -93,4 +93,5 @@ export class TelaPrincipalPage {
       });
       alert.present();
     }
-}
+  }
+  
