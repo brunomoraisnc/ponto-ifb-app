@@ -57,11 +57,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-
-      const event_lat = -15.753827;
-      const event_lng = -47.878808;
-      const unit = "K";
-
+      // TODO: remove it in the next api update
       let presence = 0;
       
       const config: BackgroundGeolocationConfig = {
@@ -79,19 +75,6 @@ export class MyApp {
           .on(BackgroundGeolocationEvents.location)
             .subscribe((location:BackgroundGeolocationResponse) => {
               console.log(location);
-
-              // Calcula distancia
-              let dist = window.TelaPrincipalPage.calcula_distancia(
-                event_lat,
-                event_lng,
-                location.latitude,
-                location.longitude,
-                unit
-              );
-              
-              // Verifica presenca
-              presence = dist > 0.09287030236638635 ? 0:1;
-
               // Envia localizacao via API
               this.sendLoc(
                 presence,
