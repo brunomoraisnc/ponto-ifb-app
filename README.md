@@ -20,25 +20,49 @@ Native components:
 
 Download the repository files:
 
-`git clone https://github.com/brunomoraisnc/trabalhoppi.git`
+```
+git clone https://github.com/brunomoraisnc/ponto-ifb-app.git
+```
 
-Go to the `trabalhoppi` folder and install NPM + NODEJS:
-
-`https://nodejs.org/en/`
+Go to the ```trabalhoppi``` folder and [install NPM + NODEJS](https://nodejs.org/en/).
 
 Then the Ionic CLI via NPM:
 
-`npm install -g ionic`
+```
+npm install -g ionic
+```
 
 The dependencies:
 
-`npm install`
+```
+npm install
+```
 
-(If needed: `npm config set unsafe-perm true`)
+(If needed: ```npm config set unsafe-perm true```)
 
-Run the server:
+Serve it:
 
-`ionic serve`
+```
+ionic serve
+```
+
+## Android Deployment
+
+Follow the instructions in [Ionic Docs](https://ionicframework.com/docs/building/android)
+ to generate the Android project. [And deploy it after Java 8, Android SDK, and Gradle installation.](https://ionicframework.com/docs/v3/intro/deploying/)
+
+
+Build:
+
+```
+ionic cordova build android
+```
+
+Run:
+
+```
+ionic cordova run android --device
+```
 
 ## More information about the project
 The project was developed with the support of [Professor Fábio Henrique](https://sites.google.com/view/oliveirafhm/home) during the Internet Programming 2 discipline of the Federal Institute of Brasília's Internet Systems course. 
