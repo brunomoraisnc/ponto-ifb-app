@@ -8,13 +8,15 @@ Event attendance control mobile app development.
 - To automate a task executed by teachers.
 
 ## Technologies
-[**IONIC Framework**](https://ionicframework.com/)
+[- Ionic Framework](https://ionicframework.com/)
 
-Native components:
+And its Native components:
 
-[Geolocation](https://ionicframework.com/docs/v3/native/geolocation/)
+[- Background Geolocation](https://ionicframework.com/docs/v3/native/background-geolocation/)
 
-[HTTP](https://ionicframework.com/docs/v3/native/http/)
+[- HTTP](https://ionicframework.com/docs/v3/native/http/)
+
+[- Device](https://ionicframework.com/docs/v3/native/device/)
 
 ## Setup
 
