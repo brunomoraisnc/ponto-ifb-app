@@ -97,6 +97,7 @@ export class TelaPrincipalPage {
               this.stopBackgroundTracking();
               this.presentToastGeneral('Monitoramento encerrado');
               console.log('Monitoramento cancelado');
+              this.showToggleFun();
             }
           }
         ]
