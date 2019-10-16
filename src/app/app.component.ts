@@ -59,14 +59,38 @@ export class MyApp {
       this.splashScreen.hide();
       // TODO: remove it in the next api update
       let presence = 0;
-      
+      // let cpf = this.getCPF();
+      // let uid = this.getDeviceUUID();
+      let lat = 0;
+      let lng = 0;
+      let url = 'https://rest-api-ifb-ponto-hml.herokuapp.com'
+
       const config: BackgroundGeolocationConfig = {
+        debug: true,
         desiredAccuracy: 10,
         stationaryRadius: 1,
         distanceFilter: 1,
-        debug: false,
         stopOnTerminate: false,
-        interval: 10000
+        interval: 10000,
+        url: url + "/location/",
+        httpHeaders: {
+          'Content-Type': 'application/json'
+        },
+        postTemplate: {
+          'cpf': '01',
+          'uid': '123',
+          'provider': '@provider',
+          'locationProvider': '@locationProvider',
+          'timestamp': '@time',
+          'latitude': '@latitude',
+          'longitude': '@longitude',
+          'accuracy': '@accuracy',
+          'speed': '@speed',
+          'altitude': '@altitude',
+          'bearing': '@bearing',
+          'isFromMockProvider': '@isFromMockProvider',
+          'mockLocationsEnabled': '@mockLocationsEnabled',
+        }
       }
       // let locations = [];
 
@@ -76,53 +100,70 @@ export class MyApp {
             .subscribe((location:BackgroundGeolocationResponse) => {
               console.log(location);
               // Envia localizacao via API
-              this.sendLoc(
-                presence,
-                this.getCPF(),
-                this.getDeviceUUID(),
-                location.latitude,
-                location.longitude
-              );
+              // this.sendLoc(
+              //   presence,
+              //   this.getCPF(),
+              //   this.getDeviceUUID(),
+              //   location.latitude,
+              //   location.longitude
+              // );
         });
       });
       window.app = this;
     });
   }
 
-  sendLoc(presenca: number, cpf: string, mac: string, lat: number, lng: number){
+  // sendLoc(
+  //   presenca: number,
+  //   cpf: string,
+  //   uid: string,
+  //   lat: number,
+  //   lng: number
+  // ){
    
-    /* DEF: Envia locatização para a API
-     * PARAMS:
-     *    presenca: presenca do aluno [0, 1]
-    */
+  //   /* DEF: Envia locatização para a API
+  //    * PARAMS:
+  //    *    presenca: presenca do aluno [0, 1]
+  //   */
 
-    let coords = lat + " " + lng;
-    this.http.post('https://api-rest-ppi.herokuapp.com/api-item/',
-    {
-      "cpf": cpf,
-      "mac": mac,
-      "coords": coords,
-      "presenca": presenca
-    }, { }).then(function(response) {
-      // prints 200
-      console.log(response.status);
-      try {
-        response.data = JSON.parse(response.data);
-        // prints test
-        console.log(response.data.message);
-      } catch(e) {
-        console.error('JSON parsing error');
-      }
-    }, function(response) {
-      console.log('Erro na requisição à API')
-      // prints 403
-      console.log(response.status);
+  //   let coords = lat + " " + lng;
+  //   this.http.post('https://api-rest-ppi.herokuapp.com/location/',
+  //   {
+  //     "cpf": cpf,
+  //     "coords": coords,
+  //     "presenca": presenca
+  //     "uid": uid,
+  //     "provider": "undefined",
+  //     "locationProvider": null,
+  //     "timestamp": 0.0,
+  //     "latitude": 0.0,
+  //     "longitude": 0.0,
+  //     "accuracy": null,
+  //     "speed": null,
+  //     "altitude": null,
+  //     "bearing": null,
+  //     "isFromMockProvider": false,
+  //     "mockLocationsEnabled": false
+  //   }, { }).then(function(response) {
+  //     // prints 200
+  //     console.log(response.status);
+  //     try {
+  //       response.data = JSON.parse(response.data);
+  //       // prints test
+  //       console.log(response.data.message);
+  //     } catch(e) {
+  //       console.error('JSON parsing error');
+  //     }
+  //   }, function(response) {
+  //     console.log('Erro na requisição à API')
+  //     // prints 403
+  //     console.log(response.status);
 
-      //prints Permission denied
-      console.log(response.error);
-      window.TelaPrincipalPage.presentToastRequestError();
-    });
-  }
+  //     //prints Permission denied
+  //     console.log(response.error);
+  //     window.TelaPrincipalPage.presentToastRequestError();
+  //   });
+  // }
 
   getLocations(){
     console.log(this.backgroundGeolocation.getLocations());
