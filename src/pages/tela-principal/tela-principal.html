@@ -43,12 +43,11 @@
     Confirmar presença!
   </button>-->
 
-  <button id="telaPrincipal-button5" ion-button color="primary" block icon-left style="border-radius:25px 25px 25px 25px;" (click)="startBackgroundTracking()">
-    <ion-icon name="locate"></ion-icon>
+  <button ion-button block icon-left (click)="startBackgroundTracking(); showToggleFun()" *ngIf="showToggle" color="primary" style="border-radius:25px 25px 25px 25px;">
+  	<ion-icon name="locate"></ion-icon>
     Iniciar monitoramento
   </button>
-
-  <button id="telaPrincipal-button6" ion-button block outline color="dark" icon-left style="border-radius:25px 25px 25px 25px;" (click)="stopBackgroundTrackingAlert()">
+  <button ion-button block icon-left (click)="stopBackgroundTrackingAlert(); showToggleFun()" *ngIf="!showToggle" color="danger" style="border-radius:25px 25px 25px 25px;">
     <ion-icon name="hand"></ion-icon>
     Parar monitoramento
   </button>

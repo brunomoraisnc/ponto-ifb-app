@@ -13,7 +13,8 @@ export class TelaPrincipalPage {
   response: string;
   buttonColor: string = '#000';
   button_status: boolean;
-  
+  showToggle: boolean = true;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -24,6 +25,15 @@ export class TelaPrincipalPage {
       this.button_status = false;
     }
     
+    showToggleFun(){
+        if(this.showToggle == true){
+          this.showToggle = false;
+        }else{
+          this.showToggle = true;
+        }
+    }
+
+
     startBackgroundTracking(){
       console.log("rodando startBackground");
       this.cpf = this.navParams.get('cpf');
