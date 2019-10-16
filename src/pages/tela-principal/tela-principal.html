@@ -6,69 +6,27 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding id="page3">
-  <!--
-  <div class="spacer" style="height:8%;" id="telaPrincipal-spacer5"></div>
-  <div style="width:100%;margin:0px 0px;line-height:250px;background-color:#f9fbe7;text-align:center;">
-    <i class="icon ion-image" style="font-size:64px;color:#888;vertical-align:middle;"></i>
-  </div>  
-  -->
   <img src="assets/img/map.png" style="display:block;width:20%;height:auto;margin-left:auto;margin-right:auto;" />
   <h1 ion-text color="primary" align="center">Olá, seja bem-vindo(a)!</h1>
-  <p>
-    Antes de iniciar, <b>certifique-se de que o GPS do seu celular esteja ativado</b>
-  </p>
-  <p>
-  Ao iniciar o monitoramento, pode ser que o aplicativo solicite permissão para utilizar o GPS
-  </p>
+  <p>Antes de iniciar, <b>certifique-se de que o GPS do seu celular esteja ativado</b></p>
+  <p>Ao iniciar o monitoramento, pode ser que o aplicativo solicite permissão para utilizar o GPS</p>
   
-  <p>
-    <b>É extremamente necessário que permita a sua utilização</b>
-  </p>
+  <p><b>É extremamente necessário que permita a sua utilização</b></p>
 
-  <p>
-    Para que a sua presença seja registrada, <b>durante o período de coleta</b>:
-  </p>
+  <p>Para que a sua presença seja registrada, <b>durante o período de coleta</b>:</p>
   
   <p><b>- o dispositivo deve ter acesso à internet; e</b></p>
   <p><b>- o GPS deve estar ativado.</b></p>
 
-  <p>
-    Para iniciar o monitoramento, pressione o botão abaixo:
-  </p>
+  <p>Para iniciar o monitoramento, pressione o botão abaixo:</p>
   
   <div class="spacer" style="width:300px;height:10px;" id="telaPrincipal-spacer6"></div>
-  
-  <!--<button id="telaPrincipal-button4" ion-button color="dark" block icon-left style="border-radius:25px 25px 25px 25px;" (click)="startBackgroundLoc()">
-    <ion-icon name="checkmark-circle-outline"></ion-icon>
-    Confirmar presença!
-  </button>-->
-
-  <button id="telaPrincipal-button5" ion-button color="primary" block icon-left style="border-radius:25px 25px 25px 25px;" (click)="startBackgroundTracking()">
-    <ion-icon name="locate"></ion-icon>
+  <button ion-button block icon-left (click)="startBackgroundTracking(); showToggleFun()" *ngIf="showToggle" color="primary" style="border-radius:25px 25px 25px 25px;">
+  	<ion-icon name="locate"></ion-icon>
     Iniciar monitoramento
   </button>
-
-  <button id="telaPrincipal-button6" ion-button block outline color="dark" icon-left style="border-radius:25px 25px 25px 25px;" (click)="stopBackgroundTrackingAlert()">
+  <button ion-button block icon-left (click)="stopBackgroundTrackingAlert(); showToggleFun()" *ngIf="!showToggle" color="danger" style="border-radius:25px 25px 25px 25px;">
     <ion-icon name="hand"></ion-icon>
     Parar monitoramento
   </button>
-
-  <!--<p>Lat: {{ lat }}</p>
-  <p>Lng: {{ lng }}</p>
-  <p>{{ response }}</p>-->
-  <!--ion-list *ngFor="let location of locations;">
-    <ion-item>
-      <ion-label><b>Latitude:</b>{{ location.latitude }}</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label><b>Longitude:</b>{{ location.longitude }}</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label><b>Speed:</b>{{ location.speed }}</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label><b>Time:</b>{{ location.time }}</ion-label>
-    </ion-item>
-  </ion-list>
-  -->
 </ion-content>
