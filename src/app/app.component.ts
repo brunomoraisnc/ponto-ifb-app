@@ -75,52 +75,9 @@ export class MyApp {
           .on(BackgroundGeolocationEvents.location)
             .subscribe((location:BackgroundGeolocationResponse) => {
               console.log(location);
-              // Envia localizacao via API
-              this.sendLoc(
-                presence,
-                this.getCPF(),
-                this.getDeviceUUID(),
-                location.latitude,
-                location.longitude
-              );
         });
       });
       window.app = this;
-    });
-  }
-
-  sendLoc(presenca: number, cpf: string, mac: string, lat: number, lng: number){
-   
-    /* DEF: Envia locatização para a API
-     * PARAMS:
-     *    presenca: presenca do aluno [0, 1]
-    */
-
-    let coords = lat + " " + lng;
-    this.http.post('https://api-rest-ppi.herokuapp.com/api-item/',
-    {
-      "cpf": cpf,
-      "mac": mac,
-      "coords": coords,
-      "presenca": presenca
-    }, { }).then(function(response) {
-      // prints 200
-      console.log(response.status);
-      try {
-        response.data = JSON.parse(response.data);
-        // prints test
-        console.log(response.data.message);
-      } catch(e) {
-        console.error('JSON parsing error');
-      }
-    }, function(response) {
-      console.log('Erro na requisição à API')
-      // prints 403
-      console.log(response.status);
-
-      //prints Permission denied
-      console.log(response.error);
-      window.TelaPrincipalPage.presentToastRequestError();
     });
   }
 
