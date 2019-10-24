@@ -57,13 +57,6 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      // TODO: remove it in the next api update
-      let presence = 0;
-      // let cpf = this.getCPF();
-      // let uid = this.getDeviceUUID();
-      let lat = 0;
-      let lng = 0;
-      // const url = 'https://rest-api-ifb-ponto-hml.herokuapp.com/';
 
       const config: BackgroundGeolocationConfig = {
         debug: true,
@@ -72,27 +65,7 @@ export class MyApp {
         distanceFilter: 1,
         stopOnTerminate: false,
         interval: 10000,
-        // url: url + "/location/",
-        // httpHeaders: {
-        //   'Content-Type': 'application/json'
-        // },
-        // postTemplate: {
-        //   'cpf': '01',
-        //   'uid': '123',
-        //   'provider': '@provider',
-        //   'locationProvider': '@locationProvider',
-        //   'timestamp': '@time',
-        //   'latitude': '@latitude',
-        //   'longitude': '@longitude',
-        //   'accuracy': '@accuracy',
-        //   'speed': '@speed',
-        //   'altitude': '@altitude',
-        //   'bearing': '@bearing',
-        //   'isFromMockProvider': '@isFromMockProvider',
-        //   'mockLocationsEnabled': '@mockLocationsEnabled',
-        // }
       }
-      // let locations = [];
 
       this.backgroundGeolocation.configure(config).then(() => {
         this.backgroundGeolocation
@@ -107,10 +80,7 @@ export class MyApp {
     });
   }
 
-  sendLoc(
-    location: BackgroundGeolocationResponse,
-  ){
-   
+  sendLoc(location: BackgroundGeolocationResponse,){
     /*
     DEF: Envia locatização para a API
     */
