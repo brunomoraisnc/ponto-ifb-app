@@ -63,7 +63,7 @@ export class MyApp {
       // let uid = this.getDeviceUUID();
       let lat = 0;
       let lng = 0;
-      const url = 'https://rest-api-ifb-ponto-hml.herokuapp.com'
+      // const url = 'https://rest-api-ifb-ponto-hml.herokuapp.com/';
 
       const config: BackgroundGeolocationConfig = {
         debug: true,
@@ -72,25 +72,25 @@ export class MyApp {
         distanceFilter: 1,
         stopOnTerminate: false,
         interval: 10000,
-        url: url + "/location/",
-        httpHeaders: {
-          'Content-Type': 'application/json'
-        },
-        postTemplate: {
-          'cpf': '01',
-          'uid': '123',
-          'provider': '@provider',
-          'locationProvider': '@locationProvider',
-          'timestamp': '@time',
-          'latitude': '@latitude',
-          'longitude': '@longitude',
-          'accuracy': '@accuracy',
-          'speed': '@speed',
-          'altitude': '@altitude',
-          'bearing': '@bearing',
-          'isFromMockProvider': '@isFromMockProvider',
-          'mockLocationsEnabled': '@mockLocationsEnabled',
-        }
+        // url: url + "/location/",
+        // httpHeaders: {
+        //   'Content-Type': 'application/json'
+        // },
+        // postTemplate: {
+        //   'cpf': '01',
+        //   'uid': '123',
+        //   'provider': '@provider',
+        //   'locationProvider': '@locationProvider',
+        //   'timestamp': '@time',
+        //   'latitude': '@latitude',
+        //   'longitude': '@longitude',
+        //   'accuracy': '@accuracy',
+        //   'speed': '@speed',
+        //   'altitude': '@altitude',
+        //   'bearing': '@bearing',
+        //   'isFromMockProvider': '@isFromMockProvider',
+        //   'mockLocationsEnabled': '@mockLocationsEnabled',
+        // }
       }
       // let locations = [];
 
@@ -114,7 +114,7 @@ export class MyApp {
     /*
     DEF: Envia locatização para a API
     */
-    
+    const url = 'https://rest-api-ifb-ponto-hml.herokuapp.com/';
     let data = {
       "cpf": this.getCPF(),
       "uid": this.getDeviceUUID(),
@@ -130,7 +130,7 @@ export class MyApp {
     }
 
     this.http.post(
-      'https://rest-api-ifb-ponto-hml.herokuapp.com',
+      url + 'location/',
       data, { }).then(function(response) {
       // prints 200
       console.log(response.status);
