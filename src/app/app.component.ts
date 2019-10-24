@@ -63,7 +63,7 @@ export class MyApp {
       // let uid = this.getDeviceUUID();
       let lat = 0;
       let lng = 0;
-      let url = 'https://rest-api-ifb-ponto-hml.herokuapp.com'
+      const url = 'https://rest-api-ifb-ponto-hml.herokuapp.com'
 
       const config: BackgroundGeolocationConfig = {
         debug: true,
@@ -130,7 +130,7 @@ export class MyApp {
     }
 
     this.http.post(
-      'https://api-rest-ppi.herokuapp.com/location/',
+      'https://rest-api-ifb-ponto-hml.herokuapp.com',
       data, { }).then(function(response) {
       // prints 200
       console.log(response.status);
