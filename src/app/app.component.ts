@@ -57,18 +57,15 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      // TODO: remove it in the next api update
-      let presence = 0;
-      
+
       const config: BackgroundGeolocationConfig = {
+        debug: true,
         desiredAccuracy: 10,
         stationaryRadius: 1,
         distanceFilter: 1,
-        debug: false,
         stopOnTerminate: false,
-        interval: 10000
+        interval: 10000,
       }
-      // let locations = [];
 
       this.backgroundGeolocation.configure(config).then(() => {
         this.backgroundGeolocation
@@ -76,34 +73,35 @@ export class MyApp {
             .subscribe((location:BackgroundGeolocationResponse) => {
               console.log(location);
               // Envia localizacao via API
-              this.sendLoc(
-                presence,
-                this.getCPF(),
-                this.getDeviceUUID(),
-                location.latitude,
-                location.longitude
-              );
+              this.sendLoc(location);
         });
       });
       window.app = this;
     });
   }
 
-  sendLoc(presenca: number, cpf: string, mac: string, lat: number, lng: number){
-   
-    /* DEF: Envia locatização para a API
-     * PARAMS:
-     *    presenca: presenca do aluno [0, 1]
+  sendLoc(location: BackgroundGeolocationResponse,){
+    /*
+    DEF: Envia locatização para a API
     */
+    const url = 'https://rest-api-ifb-ponto-hml.herokuapp.com/';
+    let data = {
+      "cpf": this.getCPF(),
+      "uid": this.getDeviceUUID(),
+      "provider": location.provider,
+      "locationProvider": location.locationProvider,
+      "timestamp": location.time,
+      "latitude": location.latitude,
+      "longitude": location.longitude,
+      "accuracy": location.accuracy,
+      "speed": location.speed,
+      "altitude": location.altitude,
+      "bearing": location.bearing,
+    }
 
-    let coords = lat + " " + lng;
-    this.http.post('https://api-rest-ppi.herokuapp.com/api-item/',
-    {
-      "cpf": cpf,
-      "mac": mac,
-      "coords": coords,
-      "presenca": presenca
-    }, { }).then(function(response) {
+    this.http.post(
+      url + 'location/',
+      data, { }).then(function(response) {
       // prints 200
       console.log(response.status);
       try {
