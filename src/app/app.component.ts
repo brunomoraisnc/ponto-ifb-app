@@ -53,6 +53,7 @@ export class MyApp {
 
   initializeApp(){
     this.platform.ready().then(() => {
+      const url = 'https://rest-api-ifb-ponto-hml.herokuapp.com';
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
@@ -64,9 +65,27 @@ export class MyApp {
         desiredAccuracy: 10,
         stationaryRadius: 1,
         distanceFilter: 1,
-        debug: false,
+        debug: true,
         stopOnTerminate: false,
-        interval: 10000
+        interval: 10000,
+        url: url + "/location/",
+        syncUrl: url + "/location/",
+        httpHeaders: {
+          'Content-Type': 'application/json'
+        },
+        postTemplate: {
+          cpf: '01',
+          uid: '123',
+          provider: '@provider',
+          locationProvider: '@locationProvider',
+          timestamp: '@time',
+          latitude: '@latitude',
+          longitude: '@longitude',
+          accuracy: '@accuracy',
+          speed: '@speed',
+          altitude: '@altitude',
+          bearing: '@bearing',
+        }
       }
       // let locations = [];
 
